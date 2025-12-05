@@ -1,0 +1,25 @@
+name: "Code Quill Snapshot"
+description: "Trigger a Code Quill snapshot for the current repository and branch."
+author: "Code Quill"
+branding:
+  icon: "camera"
+  color: "orange"
+
+inputs:
+  api-url:
+    description: "Code Quill snapshot endpoint URL"
+    required: false
+    default: "https://app.codequill.xyz/api/v1/snapshot"
+  api-key:
+    description: "Code Quill repository API key"
+    required: true
+  github-id:
+    description: "GitHub numeric repository ID (e.g. ${{ github.repository_id }})"
+    required: true
+  branch:
+    description: "Branch to snapshot (defaults to the branch that triggered the workflow)"
+    required: false
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
