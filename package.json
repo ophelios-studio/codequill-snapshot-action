@@ -1,0 +1,22 @@
+{
+  "name": "codequill-snapshot-action",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GitHub Action to trigger a Code Quill snapshot for the current repository.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/index.ts -o dist --source-map",
+    "lint": "eslint src --ext .ts"
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.8.0",
+    "@vercel/ncc": "^0.38.1",
+    "eslint": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0"
+  }
+}
