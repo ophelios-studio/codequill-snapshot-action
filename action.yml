@@ -9,7 +9,7 @@ inputs:
   api-url:
     description: "Code Quill snapshot endpoint URL"
     required: false
-    default: "https://app.codequill.xyz/api/v1/snapshot"
+    default: "https://api.codequill.xyz/v1/snapshot"
   api-key:
     description: "Code Quill repository API key"
     required: true
