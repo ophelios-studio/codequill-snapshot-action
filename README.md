@@ -11,8 +11,7 @@ Repository: https://github.com/ophelios-studio/codequill-snapshot-action
 ## Basic usage
 
 Create a workflow, for example `.github/workflows/codequill-snapshot.yml`:
-```
-yaml
+```yaml
 name: Code Quill Snapshot
 
 on:
@@ -38,7 +37,7 @@ When run, the action:
 1. Sends a signed POST request to your Code Quill instance at:
 
    ```text
-   https://app.codequill.xyz/api/v1/snapshot
+   https://api.codequill.xyz/v1/snapshot
    ```
 
 2. Includes:
@@ -101,8 +100,7 @@ Each push that matches the trigger will ask Code Quill to create a new snapshot 
 ## Advanced usage
 
 ### Snapshot only specific branches
-```
-yaml
+```yaml
 on:
   push:
     branches:
@@ -110,8 +108,7 @@ on:
       - release/*
 ```
 
-```
-yaml
+```yaml
 jobs:
   snapshot:
     runs-on: ubuntu-latest
@@ -126,8 +123,7 @@ jobs:
 ### Trigger snapshots on a schedule
 
 For example, nightly snapshots of `main` even if there are no pushes:
-```
-yaml
+```yaml
 on:
   schedule:
     - cron: "0 3 * * *" # 03:00 UTC every day
@@ -146,8 +142,7 @@ jobs:
 ### Using outputs
 
 You can surface the transaction hash or Merkle root in later steps:
-```
-yaml
+```yaml
 jobs:
   snapshot:
     runs-on: ubuntu-latest
@@ -210,8 +205,7 @@ When debugging:
 ## Versioning
 
 Use the major tag for stable integration:
-```
-yaml
+```yaml
 uses: ophelios-studio/codequill-snapshot-action@v1
 ```
 
