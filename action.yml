@@ -14,9 +14,8 @@ inputs:
     description: "Code Quill repository API key"
     required: true
   github-id:
-    description: "GitHub numeric repository ID (defaults to ${{ github.repository_id }})"
+    description: "GitHub numeric repository ID (optional; auto-detected from the workflow context when possible)"
     required: false
-    default: ${{ github.repository_id }}
   branch:
     description: "Branch to snapshot (defaults to the branch that triggered the workflow)"
     required: false
