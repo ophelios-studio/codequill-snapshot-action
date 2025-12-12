@@ -16,12 +16,27 @@ async function run(): Promise<void> {
     try {
         const apiUrl = core.getInput('api-url', { required: true });
         const apiKey = core.getInput('api-key', { required: true });
-        const githubIdInput = core.getInput('github-id', { required: true });
+        const githubIdInput = core.getInput('github-id');
         const branchInput = core.getInput('branch');
-        const githubId = Number(githubIdInput);
+
+        const githubIdStrFromInput = githubIdInput && githubIdInput.trim().length > 0 ? githubIdInput.trim() : '';
+        const githubIdStrFromEnv = process.env.GITHUB_REPOSITORY_ID && process.env.GITHUB_REPOSITORY_ID.trim().length > 0
+            ? process.env.GITHUB_REPOSITORY_ID.trim()
+            : '';
+
+        const githubIdStr = githubIdStrFromInput || githubIdStrFromEnv;
+
+        if (!githubIdStr) {
+            core.setFailed(
+                'Could not determine github-id. Pass the "github-id" input or ensure GITHUB_REPOSITORY_ID is set.'
+            );
+            return;
+        }
+
+        const githubId = Number(githubIdStr);
 
         if (!Number.isFinite(githubId)) {
-            core.setFailed(`Invalid github-id input: "${githubIdInput}" is not a number.`);
+            core.setFailed(`Invalid github-id: "${githubIdStr}" is not a finite number.`);
             return;
         }
 

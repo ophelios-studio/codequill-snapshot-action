@@ -26,8 +26,6 @@ jobs:
         uses: ophelios-studio/codequill-snapshot-action@v1
         with:
           api-key: ${{ secrets.CODEQUILL_API_KEY }}
-          github-id: ${{ github.repository_id }}
-          branch: ${{ github.ref_name }}
 ```
 
 ## What this action does
@@ -37,7 +35,7 @@ When run, the action:
 1. Sends a signed POST request to your Code Quill instance at:
 
    ```text
-   https://api.codequill.xyz/v1/snapshot
+   https://api.codequill.xyz/v1/app/snapshot
    ```
 
 2. Includes:
@@ -59,12 +57,12 @@ When run, the action:
 
 ## Inputs
 
-| Name        | Required | Default                                              | Description                                                                                         |
-|-------------|----------|------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| `api-key`   | yes      | n/a                                                  | Code Quill repository API key. Store this as a GitHub secret (for example `CODEQUILL_API_KEY`).    |
-| `github-id` | yes      | n/a                                                  | Numeric GitHub repository id. Typically `${{ github.repository_id }}`.                            |
+| Name        | Required | Default                                                           | Description                                                                                         |
+|-------------|----------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `api-key`   | yes      | n/a                                                               | Code Quill repository API key. Store this as a GitHub secret (for example `CODEQUILL_API_KEY`).    |
+| `github-id` | no       | `${{ github.repository_id }}`                                     | Numeric GitHub repository id. Auto-resolves to the current repo id if omitted.                     |
 | `branch`    | no       | `${{ github.ref_name }}` (the branch that triggered the workflow) | Branch name to snapshot. Override when running from non‑branch refs or custom workflows.           |
-| `api-url`   | no       | `https://app.codequill.xyz/api/v1/snapshot`      | Advanced: override to point at a different Code Quill deployment or environment.                   |
+| `api-url`   | no       | `https://api.codequill.xyz/v1/app/snapshot`                       | Advanced: override to point at a different Code Quill deployment or environment.                   |
 
 ---
 
@@ -117,7 +115,6 @@ jobs:
         uses: ophelios-studio/codequill-snapshot-action@v1
         with:
           api-key: ${{ secrets.CODEQUILL_API_KEY }}
-          github-id: ${{ github.repository_id }}
           branch: ${{ github.ref_name }}
 ```
 ### Trigger snapshots on a schedule
