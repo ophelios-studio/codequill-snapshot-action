@@ -20,6 +20,22 @@ inputs:
     description: "Branch to snapshot (defaults to the branch that triggered the workflow)"
     required: false
 
+  status-api-url:
+    description: 'Optional status endpoint URL. If omitted, defaults to "{api-url}/status".'
+    required: false
+  confirmations:
+    description: "How many confirmations to wait for before succeeding."
+    required: false
+    default: "1"
+  poll-interval-seconds:
+    description: "Polling interval (seconds) for transaction confirmation checks."
+    required: false
+    default: "5"
+  max-wait-seconds:
+    description: "Max seconds to wait for confirmation before failing the Action."
+    required: false
+    default: "600"
+
 runs:
   using: "node20"
   main: "dist/index.js"
